@@ -1,0 +1,42 @@
+
+Atores:
+    1. Usuário
+    2. Administrador
+Casos de uso:
+    1. Fazer login
+        Como: Usuário
+        Desejo fazer: autenticação no sistema
+    2. Registrar ponto:
+        Como: Usuário
+        Desejo: Registrar ponto
+        Regra:
+            a. é necessário estar autenticado como usuário válido
+            b. Pode ser do tipo "entrada" ou "saída"
+            c. O tipo registrado precisa ser o oposto do último ponto registrado no dia
+            d. O primeiro registro do dia precisa ser do tipo "entrada"
+    3. Consulta histórico
+        Como: usuário
+        Desejo: Consultar horários de entrada e saída e quantidade de horas trabalhadas em
+        um certo intervalo de datas.
+    4. Registrar erro de ponto em um dia
+        Como: Usuário
+        Desejo: registrar erros na batida de ponto em um certo dia, informando horário de entrada e saída e justificativa.
+        Esse registro precisa ser aprovado pelo administrador.
+    5. Aprovar erro de ponto
+        Como: Administrador
+        Desejo: Poder aprovar ou reprovar registros de erro em batida de ponto. Caso aprovado, o registro deve ser alterado
+        para os dados informados pelo usuário.
+    6. Gerar relatório
+        Como: Administrador
+        Desejo: Poder gerar relatório com total de horas trabalhadas e total de horas por funcionário em um certo intervalo de tempo
+    7.Listar todos os registros
+        Como: Administrador
+        Desejo: Listar registros de batida de ponto, podendo filtrar por funcionário e datas
+    8. Registrar usuário
+        Desejo: Registrar meus dados como novo usuário, indicando o tipo de usuário administrador ou usuário comum.
+        Regras:
+            a. Não póde conter usuário registrado com o e-mail fornecido. (status 409)
+            b. A senha deve possuir dificuldade mínima. (status 422)
+
+
+
