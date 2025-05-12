@@ -1,6 +1,7 @@
-package com.mateus.ponto_eletronico.dto;
+package com.mateus.ponto_eletronico.dto.usuarios;
 
 
+import com.mateus.ponto_eletronico.dto.GenericResponse;
 
 public class CreateUserResponse extends GenericResponse {
     private final int userId;

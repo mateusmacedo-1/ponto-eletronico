@@ -1,9 +1,9 @@
 package com.mateus.ponto_eletronico.domain;
 
-import com.mateus.ponto_eletronico.dto.CreateConfigRequest;
+import com.mateus.ponto_eletronico.dto.pontos.RegistrarPontoRequest;
 import jakarta.persistence.*;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 
 @Table(name="ponto")
@@ -12,7 +12,7 @@ public class Ponto {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private Date timestamp;
+    private LocalDateTime timestamp;
     private TipoPonto tipoPonto;
     @ManyToOne
     @JoinColumn(name="usuario_id")
@@ -23,7 +23,7 @@ public class Ponto {
 
     public Ponto() {}
 
-    public Ponto(int id, Date timestamp, TipoPonto tipoPonto, Usuario usuario, Configuracoes configuracoes) {
+    public Ponto(int id, LocalDateTime timestamp, TipoPonto tipoPonto, Usuario usuario, Configuracoes configuracoes) {
         this.id = id;
         this.timestamp = timestamp;
         this.tipoPonto = tipoPonto;
@@ -31,12 +31,23 @@ public class Ponto {
         this.configuracoes = configuracoes;
     }
 
+    public Ponto(TipoPonto tipoPonto, Usuario usuario, Configuracoes configuracoes) {
+        this.timestamp = LocalDateTime.now();
+        this.tipoPonto = tipoPonto;
+        this.usuario = usuario;
+        this.configuracoes = configuracoes;
+    }
+
+    public Ponto(TipoPonto tipoPonto, Usuario usuario) {
+        this.tipoPonto = tipoPonto;
+        this.usuario = usuario;
+    }
 
     public int getId() {
         return id;
     }
 
-    public Date getTimestamp() {
+    public LocalDateTime getTimestamp() {
         return timestamp;
     }
 
@@ -50,5 +61,16 @@ public class Ponto {
 
     public Configuracoes getConfiguracoes() {
         return configuracoes;
+    }
+
+    @Override
+    public String toString() {
+        return "Ponto{" +
+                "id=" + id +
+                ", timestamp=" + timestamp +
+                ", tipoPonto=" + tipoPonto +
+                ", usuario=" + usuario +
+                ", configuracoes=" + configuracoes +
+                '}';
     }
 }

@@ -1,6 +1,6 @@
 package com.mateus.ponto_eletronico.domain;
 
-import com.mateus.ponto_eletronico.dto.CreateUserRequest;
+import com.mateus.ponto_eletronico.dto.usuarios.CreateUserRequest;
 import com.mateus.ponto_eletronico.exceptions.business.BusinessException;
 import jakarta.persistence.*;
 
@@ -43,29 +43,14 @@ public class Usuario {
 
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setId(int id){
+        this.id = id;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Papel getPapel() {
-        return papel;
-    }
-
-    public void setPapel(Papel papel) {
-        this.papel = papel;
-    }
 
     public int getId() {
         return id;

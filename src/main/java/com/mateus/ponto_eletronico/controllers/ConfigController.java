@@ -3,8 +3,8 @@ package com.mateus.ponto_eletronico.controllers;
 
 import com.mateus.ponto_eletronico.business.ConfigBC;
 import com.mateus.ponto_eletronico.domain.Configuracoes;
-import com.mateus.ponto_eletronico.dto.CreateConfigRequest;
-import com.mateus.ponto_eletronico.dto.CreateConfigResponse;
+import com.mateus.ponto_eletronico.dto.configs.CreateConfigRequest;
+import com.mateus.ponto_eletronico.dto.configs.CreateConfigResponse;
 import com.mateus.ponto_eletronico.dto.GenericResponse;
 import com.mateus.ponto_eletronico.exceptions.business.BusinessException;
 import com.mateus.ponto_eletronico.exceptions.business.ConflitoException;

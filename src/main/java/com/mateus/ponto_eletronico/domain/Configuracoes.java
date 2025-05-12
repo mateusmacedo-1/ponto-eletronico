@@ -1,12 +1,12 @@
 package com.mateus.ponto_eletronico.domain;
 
-import com.mateus.ponto_eletronico.dto.CreateConfigRequest;
+import com.mateus.ponto_eletronico.dto.configs.CreateConfigRequest;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Table(name="configuracoes")
 @Entity
@@ -14,7 +14,7 @@ public class Configuracoes {
     @Id
     @GeneratedValue
     private int id;
-    private Date timestamp;
+    private LocalDateTime timestamp;
     private float jornadaDiariaHoras;
     private float qtdHoraExtraPermitida;
     private boolean ativa;
@@ -22,7 +22,7 @@ public class Configuracoes {
     public Configuracoes() {
     }
 
-    public Configuracoes(int id, float jornadaDiariaHoras, float qtdHoraExtraPermitida, Date timestamp, boolean ativa) {
+    public Configuracoes(int id, float jornadaDiariaHoras, float qtdHoraExtraPermitida, LocalDateTime timestamp, boolean ativa) {
         this.id = id;
         this.jornadaDiariaHoras = jornadaDiariaHoras;
         this.qtdHoraExtraPermitida = qtdHoraExtraPermitida;
@@ -33,7 +33,7 @@ public class Configuracoes {
     public Configuracoes(CreateConfigRequest dto) {
         this.jornadaDiariaHoras = dto.jornadaDiariaHoras();
         this.qtdHoraExtraPermitida = dto.qtdHoraExtraPermitida();
-        this.timestamp = new Date();
+        this.timestamp = LocalDateTime.now();
         this.ativa = true;
     }
 
@@ -45,7 +45,7 @@ public class Configuracoes {
         return qtdHoraExtraPermitida;
     }
 
-    public Date getTimestamp() {
+    public LocalDateTime getTimestamp() {
         return timestamp;
     }
 
@@ -55,5 +55,9 @@ public class Configuracoes {
 
     public boolean isAtiva() {
         return ativa;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

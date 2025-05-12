@@ -3,11 +3,10 @@ package com.mateus.ponto_eletronico.controllers;
 
 import com.mateus.ponto_eletronico.business.UserBC;
 import com.mateus.ponto_eletronico.domain.Usuario;
-import com.mateus.ponto_eletronico.dto.CreateUserRequest;
-import com.mateus.ponto_eletronico.dto.CreateUserResponse;
+import com.mateus.ponto_eletronico.dto.usuarios.CreateUserRequest;
+import com.mateus.ponto_eletronico.dto.usuarios.CreateUserResponse;
 import com.mateus.ponto_eletronico.exceptions.business.BusinessException;
 import com.mateus.ponto_eletronico.exceptions.business.ConflitoException;
-import jakarta.websocket.server.PathParam;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

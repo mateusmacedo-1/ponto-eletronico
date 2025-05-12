@@ -1,6 +1,8 @@
-package com.mateus.ponto_eletronico.dto;
+package com.mateus.ponto_eletronico.dto.configs;
 
-public class CreateConfigResponse extends GenericResponse{
+import com.mateus.ponto_eletronico.dto.GenericResponse;
+
+public class CreateConfigResponse extends GenericResponse {
     private final int configId;
     private static final String CREATE_CONFIG_MESSAGE_SUCESS = "Configurações atualizadas com sucesso.";
     private static final String CREATE_CONFIG_MESSAGE_ERROR = "Erro ao atualizar as configurações.";
