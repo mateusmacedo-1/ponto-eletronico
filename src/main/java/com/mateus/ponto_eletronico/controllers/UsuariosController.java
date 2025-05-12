@@ -17,7 +17,7 @@ import java.util.List;
 @RequestMapping("/usuarios")
 public class UsuariosController {
 
-    private UserBC userBC;
+    private final UserBC userBC;
     public UsuariosController(UserBC userBC) {
         this.userBC = userBC;
     }
@@ -35,7 +35,7 @@ public class UsuariosController {
     }
 
     @PostMapping
-    public ResponseEntity<CreateUserResponse> createUser(CreateUserRequest userDto){
+    public ResponseEntity<CreateUserResponse> createUser(@RequestBody CreateUserRequest userDto){
         try {
             Usuario usuario = new Usuario(userDto);
             int newId = userBC.createUser(usuario);

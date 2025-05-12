@@ -1,5 +1,6 @@
 package com.mateus.ponto_eletronico.domain;
 
+import com.mateus.ponto_eletronico.dto.CreateConfigRequest;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -15,24 +16,23 @@ public class Configuracoes {
     private int id;
     private Date timestamp;
     private float jornadaDiariaHoras;
-    private float taxaHorasExtrasPermitidas;
+    private float qtdHoraExtraPermitida;
     private boolean ativa;
 
     public Configuracoes() {
     }
 
-    public Configuracoes(int id, float jornadaDiariaHoras, float taxaHorasExtrasPermitidas, Date timestamp, boolean ativa) {
+    public Configuracoes(int id, float jornadaDiariaHoras, float qtdHoraExtraPermitida, Date timestamp, boolean ativa) {
         this.id = id;
         this.jornadaDiariaHoras = jornadaDiariaHoras;
-        this.taxaHorasExtrasPermitidas = taxaHorasExtrasPermitidas;
+        this.qtdHoraExtraPermitida = qtdHoraExtraPermitida;
         this.timestamp = timestamp;
         this.ativa = ativa;
     }
 
-    public Configuracoes(float jornadaDiariaHoras, float taxaHorasExtrasPermitidas, int id) {
-        this.jornadaDiariaHoras = jornadaDiariaHoras;
-        this.taxaHorasExtrasPermitidas = taxaHorasExtrasPermitidas;
-        this.id = id;
+    public Configuracoes(CreateConfigRequest dto) {
+        this.jornadaDiariaHoras = dto.jornadaDiariaHoras();
+        this.qtdHoraExtraPermitida = dto.qtdHoraExtraPermitida();
         this.timestamp = new Date();
         this.ativa = true;
     }
@@ -41,8 +41,8 @@ public class Configuracoes {
         return jornadaDiariaHoras;
     }
 
-    public float getTaxaHorasExtrasPermitidas() {
-        return taxaHorasExtrasPermitidas;
+    public float getQtdHoraExtraPermitida() {
+        return qtdHoraExtraPermitida;
     }
 
     public Date getTimestamp() {

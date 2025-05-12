@@ -1,7 +1,10 @@
 package com.mateus.ponto_eletronico.domain;
 
 import com.mateus.ponto_eletronico.dto.CreateUserRequest;
+import com.mateus.ponto_eletronico.exceptions.business.BusinessException;
 import jakarta.persistence.*;
+
+import java.util.Arrays;
 
 @Table(name="usuario")
 @Entity
@@ -24,10 +27,20 @@ public class Usuario {
     }
 
     public Usuario(CreateUserRequest userDto) {
+        String papeis = String.join(", ",
+                Arrays.stream(Papel.values())
+                        .map(Enum::name)
+                        .toArray(String[]::new)
+        );
         this.id = 0;
         this.name = userDto.name();
         this.email = userDto.email();
-        this.papel = userDto.papel();
+        try{
+            this.papel = Papel.valueOf(userDto.papel());
+        } catch (Exception e) {
+            throw new BusinessException(String.format("O papel informado não está entre os permitidos: %s", papeis));
+        }
+
     }
 
     public String getName() {

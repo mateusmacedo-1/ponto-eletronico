@@ -15,7 +15,7 @@ import java.util.List;
 @Service
 public class UserBC {
 
-    private UserDAO userDAO;
+    private final UserDAO userDAO;
 
     public UserBC(@Qualifier("userDAOJPA") UserDAO userDAO) {
         this.userDAO = userDAO;
@@ -23,7 +23,7 @@ public class UserBC {
 
     public int createUser(Usuario usuario) {
         boolean isNomeValido = true;
-        boolean isUsuarioJaCadastrado = true;
+        boolean isUsuarioJaCadastrado = userDAO.existsByEmail(usuario.getEmail());
         if (!isNomeValido) {
             throw new BusinessException("Erro ao criar usuário. Confira os dados e tente novamente.");
         } else if (isUsuarioJaCadastrado) {

@@ -1,5 +1,6 @@
 package com.mateus.ponto_eletronico.domain;
 
+import com.mateus.ponto_eletronico.dto.CreateConfigRequest;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -29,6 +30,7 @@ public class Ponto {
         this.usuario = usuario;
         this.configuracoes = configuracoes;
     }
+
 
     public int getId() {
         return id;

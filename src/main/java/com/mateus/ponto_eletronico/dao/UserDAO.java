@@ -9,4 +9,5 @@ public interface UserDAO {
     Usuario getById(int id);
     List<Usuario> getAll();
     int create(Usuario usuario);
+    boolean existsByEmail(String email);
 }
