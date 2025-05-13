@@ -14,10 +14,17 @@ Casos de uso:
             b. Pode ser do tipo "entrada" ou "saída"
             c. O tipo registrado precisa ser o oposto do último ponto registrado no dia
             d. O primeiro registro do dia precisa ser do tipo "entrada"
-    3. Consulta histórico
-        Como: usuário
-        Desejo: Consultar horários de entrada e saída e quantidade de horas trabalhadas em
-        um certo intervalo de datas.
+        3. Consulta histórico
+            Caso 1: Histórico Diário
+            Como: usuário
+            Desejo: Consultar horários de entrada e saída e quantidade de horas trabalhadas no dia da consulta. Sendo possível ver
+            os horários, o tipo de batida, a quantidade de horas trabalhadas, e a quantidade de horas restantes a trabalhar.
+
+            Caso 2: Histórico Mensal
+            Como: usuário
+            Desejo: Consultar horários de entrada e saída e quantidade de horas trabalhadas em todos os dias do mês. Sendo possível ver
+            os horários, o tipo de batida, a quantidade de horas trabalhadas, e a quantidade de horas restantes a trabalhar.
+
     4. Registrar erro de ponto em um dia
         Como: Usuário
         Desejo: registrar erros na batida de ponto em um certo dia, informando horário de entrada e saída e justificativa.

@@ -43,7 +43,5 @@ public class PontoBC {
         } catch (NotFoundException e) {
             throw new BusinessException(e.getMessage());
         }
-
-
     }
 }

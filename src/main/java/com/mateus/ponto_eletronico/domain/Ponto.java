@@ -1,6 +1,5 @@
 package com.mateus.ponto_eletronico.domain;
 
-import com.mateus.ponto_eletronico.dto.pontos.RegistrarPontoRequest;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
