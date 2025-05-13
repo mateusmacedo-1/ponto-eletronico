@@ -13,9 +13,6 @@ import com.mateus.ponto_eletronico.exceptions.data.NotFoundException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -33,10 +30,6 @@ public class PontoBC {
         this.configDAO = configDAO;
     }
 
-    public TipoPonto getTipoUltimaBatida() {
-        return TipoPonto.ENTRADA;
-    }
-
     public Ponto registrarPonto(int usuarioId) {
         try {
             // verifica se usuário existe antes. se mandar direto usuarioId a consulta de ultipoTipoPonto vem vazia
@@ -44,7 +37,7 @@ public class PontoBC {
             Usuario usuario = userDAO.getById(usuarioId);
             Optional<Ponto> ultimoPontoOpt = dao.getUltimoPontoUsuario(usuario.getId());
             // REGRA 2.c O tipo registrado precisa ser o oposto do último ponto registrado no dia
-            TipoPonto ultimoTipoPonto = ultimoPontoOpt.isEmpty() ? TipoPonto.ENTRADA : ultimoPontoOpt.get().getTipoPonto();
+            TipoPonto ultimoTipoPonto = ultimoPontoOpt.isEmpty() ? TipoPonto.ENTRADA : ultimoPontoOpt.get().getTipoPonto().alternar();
             Configuracoes config = configDAO.getLast();
             return dao.registrarPonto(usuario, ultimoTipoPonto, config);
         } catch (NotFoundException e) {

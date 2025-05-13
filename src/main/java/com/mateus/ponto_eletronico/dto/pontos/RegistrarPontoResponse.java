@@ -5,16 +5,16 @@ import com.mateus.ponto_eletronico.dto.GenericResponse;
 
 public class RegistrarPontoResponse extends GenericResponse {
     private Ponto ponto;
-    private static final String CREATE_MESSAGE_SUCESS = "Ponto registrado com sucesso.";
-    private static final String CREATE_MESSAGE_ERROR = "Erro ao registrar ponto.";
+    public static final String CREATE_MESSAGE_SUCESS = "Ponto registrado com sucesso.";
+    public static final String CREATE_MESSAGE_ERROR = "Erro ao registrar ponto: %s";
 
     public RegistrarPontoResponse(Ponto ponto) {
         super(CREATE_MESSAGE_SUCESS);
         this.ponto = ponto;
     }
 
-    public RegistrarPontoResponse() {
-        super(CREATE_MESSAGE_ERROR);
+    public RegistrarPontoResponse(String error) {
+        super(String.format(CREATE_MESSAGE_ERROR, error));
     }
 
     public Ponto getPonto() {

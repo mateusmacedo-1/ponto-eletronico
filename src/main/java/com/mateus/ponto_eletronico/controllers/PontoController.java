@@ -1,17 +1,13 @@
 package com.mateus.ponto_eletronico.controllers;
 
 
-import com.mateus.ponto_eletronico.business.ConfigBC;
 import com.mateus.ponto_eletronico.business.PontoBC;
-import com.mateus.ponto_eletronico.business.UserBC;
-import com.mateus.ponto_eletronico.dao.ConfigDAO;
-import com.mateus.ponto_eletronico.dao.UserDAO;
-import com.mateus.ponto_eletronico.domain.Configuracoes;
 import com.mateus.ponto_eletronico.domain.Ponto;
-import com.mateus.ponto_eletronico.domain.TipoPonto;
-import com.mateus.ponto_eletronico.domain.Usuario;
+import com.mateus.ponto_eletronico.dto.GenericResponse;
 import com.mateus.ponto_eletronico.dto.pontos.RegistrarPontoRequest;
 import com.mateus.ponto_eletronico.dto.pontos.RegistrarPontoResponse;
+import com.mateus.ponto_eletronico.exceptions.business.BusinessException;
+import com.mateus.ponto_eletronico.exceptions.business.ConflitoException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,8 +24,17 @@ public class PontoController {
     }
 
     @PostMapping
-    public ResponseEntity<RegistrarPontoResponse> registrar(@RequestBody RegistrarPontoRequest dto){
-        Ponto ponto = pontoBC.registrarPonto(dto.usuarioId());
-        return ResponseEntity.status(200).body(new RegistrarPontoResponse(ponto));
+    public ResponseEntity<GenericResponse> registrar(@RequestBody RegistrarPontoRequest dto){
+        try {
+            Ponto ponto = pontoBC.registrarPonto(dto.usuarioId());
+            return ResponseEntity.status(201).body(new RegistrarPontoResponse(ponto));
+        } catch (BusinessException e){
+            String errorMsg = String.format(RegistrarPontoResponse.CREATE_MESSAGE_ERROR, e.getMessage());
+            return ResponseEntity.status(422).body(new GenericResponse(errorMsg));
+        } catch (ConflitoException e){
+            String errorMsg = String.format(RegistrarPontoResponse.CREATE_MESSAGE_ERROR, e.getMessage());
+            return ResponseEntity.status(409).body(new GenericResponse(errorMsg));
+        }
+
     }
 }
